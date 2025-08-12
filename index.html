@@ -221,3 +221,53 @@
 
 </body>
 </html>
+<script src="https://cdn.emailjs.com/sdk/3.2/email.min.js"></script>
+
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+<meta charset="UTF-8" />
+<title>اختبار EmailJS</title>
+<script src="https://cdn.emailjs.com/sdk/3.2/email.min.js"></script>
+</head>
+<body>
+
+<form id="contactForm">
+  <input type="text" id="phone" placeholder="رقم الهاتف" required><br>
+  <textarea id="address" placeholder="العنوان" required></textarea><br>
+  <textarea id="order" placeholder="تفاصيل الطلب" required></textarea><br>
+  <button type="submit">إرسال الطلب</button>
+</form>
+
+<script>
+  emailjs.init('YOUR_USER_ID'); // استبدل بالقيمة الصحيحة
+
+  document.getElementById('contactForm').addEventListener('submit', function(e) {
+    e.preventDefault();
+
+    const phone = document.getElementById('phone').value.trim();
+    const address = document.getElementById('address').value.trim();
+    const order = document.getElementById('order').value.trim();
+
+    if(!phone || !address || !order){
+      alert('يرجى تعبئة جميع الحقول');
+      return;
+    }
+
+    const templateParams = {
+      customer_phone: phone,
+      customer_address: address,
+      order_list: order
+    };
+
+    emailjs.send('YOUR_SERVICE_ID', 'YOUR_TEMPLATE_ID', templateParams)
+    .then(() => alert('تم إرسال الطلب!'))
+    .catch(err => {
+      alert('خطأ في الإرسال، حاول مرة أخرى');
+      console.error(err);
+    });
+  });
+</script>
+
+</body>
+</html>
