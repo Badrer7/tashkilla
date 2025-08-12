@@ -136,7 +136,8 @@
   <section id="homeSection">
     <h2>مرحباً بكم في تشكيله</h2>
     <p>نقدم لكم أفضل المنتجات بخيارات متنوعة وبألوان تلائم ذوقكم. استمتع بتجربة تسوق فريدة بطابع بني دافئ وأنيق.</p>
-    <a href="#" class="btn-main">تسوق الآن</a>
+    
+    
   </section>
 
   <section id="productsSection" style="display:none;">
@@ -153,6 +154,26 @@
       </div>
     </div>
   </section>
+  <section id="productsSection" style="display:none;">
+  <!-- محتوى المنتجات -->
+</section>
+<a href="#" class="btn-main" id="shopBtn">تسوق الآن</a>
+
+<script>
+  function showSection(sectionId) {
+    const sections = ['homeSection', 'productsSection', 'aboutSection', 'contactSection'];
+    sections.forEach(id => {
+      document.getElementById(id).style.display = (id === sectionId) ? 'block' : 'none';
+    });
+  }
+
+  // زر تسوق الآن يفتح قسم المنتجات
+  document.getElementById('shopBtn').addEventListener('click', function(e) {
+    e.preventDefault();
+    showSection('productsSection');
+  });
+</script>
+
 
   <section id="aboutSection" style="display:none;">
     <h2>من نحن</h2>
