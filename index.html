@@ -241,19 +241,19 @@
             direction: rtl; /* لاتجاه النص من اليمين لليسار */
         }
         .container {
-            background-color: #fff;
+            background-color: #926f3a;
             padding: 30px;
             border-radius: 12px;
-            box-shadow: 0 6px 15px rgba(0,0,0,0.1);
+            box-shadow: 0 6px 15px rgba(162, 255, 0, 0.1);
             width: 100%;
             max-width: 550px;
         }
         h1 {
-            color: #2c3e50;
+            color: #78afe7;
             text-align: center;
             margin-bottom: 25px;
             font-size: 2.2em;
-            border-bottom: 3px solid #3498db;
+            border-bottom: 3px solid #f8fcfe;
             padding-bottom: 10px;
         }
         .form-group {
@@ -262,14 +262,14 @@
         .form-group label {
             display: block;
             margin-bottom: 8px;
-            color: #34495e;
+            color: #ffffff;
             font-weight: 600;
         }
         .form-group input,
         .form-group textarea {
             width: 100%;
             padding: 12px;
-            border: 1px solid #bdc3c7;
+            border: 1px solid #000000;
             border-radius: 8px;
             box-sizing: border-box;
             font-size: 16px;
@@ -403,3 +403,9 @@
 
 </body>
 </html>
+emailjs.init({
+  publicKey: 'YOUR_PUBLIC_KEY', /Fny7jugiUyvyGy9AG/ <-- هنا
+});
+
+const serviceID = 'YOUR_SERVICE_ID'; /service_m9avbdg/ <-- هنا
+const templateID = 'YOUR_TEMPLATE_ID'; /template_weu7ng8/ <-- وهنا
