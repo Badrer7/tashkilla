@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>تشكيله</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Cairo&display=swap');
+  * {
+    margin: 0; padding: 0; box-sizing: border-box;
+    font-family: 'Cairo', sans-serif;
+  }
+  body {
+    background: linear-gradient(135deg, #4e342e, #6d4c41, #a1887f);
+    color: #fff9f0;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+  }
+  header {
+    background-color: #3e2723;
+    padding: 20px 0;
+    text-align: center;
+    box-shadow: 0 3px 6px rgba(0,0,0,0.3);
+  }
+  header h1 {
+    font-size: 3rem;
+    letter-spacing: 3px;
+    color: #d7ccc8;
+    text-shadow: 1px 1px 4px #3e2723;
+  }
+  nav {
+    margin-top: 10px;
+  }
+  nav a {
+    text-decoration: none;
+    color: #d7ccc8;
+    margin: 0 15px;
+    font-size: 1.1rem;
+    transition: color 0.3s ease;
+    cursor: pointer;
+  }
+  nav a:hover {
+    color: #ffcc80;
+  }
+  main {
+    flex: 1;
+    padding: 40px 20px;
+    max-width: 900px;
+    margin: 0 auto;
+    text-align: center;
+  }
+  h2 {
+    font-size: 2.2rem;
+    margin-bottom: 20px;
+    color: #ffcc80;
+  }
+  p {
+    font-size: 1.2rem;
+    line-height: 1.6;
+    color: #d7ccc8;
+    margin-bottom: 30px;
+  }
+  .btn-main {
+    display: inline-block;
+    background-color: #6d4c41;
+    color: #fff9f0;
+    padding: 12px 30px;
+    margin: 30px auto 0;
+    font-size: 1.2rem;
+    border-radius: 30px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    text-decoration: none;
+  }
+  .btn-main:hover {
+    background-color: #a1887f;
+  }
+  /* قسم المنتجات */
+  .products-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px,1fr));
+    gap: 25px;
+    margin-top: 20px;
+  }
+  .product-card {
+    background-color: #5d4037cc;
+    border-radius: 15px;
+    padding: 20px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+    transition: transform 0.3s ease;
+  }
+  .product-card:hover {
+    transform: translateY(-10px);
+  }
+  .product-image {
+    width: 100%;
+    height: 180px;
+    object-fit: cover;
+    border-radius: 10px;
+    margin-bottom: 15px;
+    border: 2px solid #a1887f;
+  }
+  .product-title {
+    font-size: 1.4rem;
+    margin-bottom: 10px;
+    color: #ffcc80;
+  }
+  .product-desc {
+    font-size: 1rem;
+    color: #d7ccc8;
+  }
+  footer {
+    background-color: #3e2723;
+    color: #d7ccc8;
+    text-align: center;
+    padding: 15px 0;
+    font-size: 0.9rem;
+    box-shadow: inset 0 3px 6px rgba(0,0,0,0.3);
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <h1>تشكيله</h1>
+  <nav>
+    <a href="#" id="homeLink">الرئيسية</a>
+    <a href="#" id="productsLink">منتجاتنا</a>
+    <a href="#" id="aboutLink">من نحن</a>
+    <a href="#" id="contactLink">تواصل معنا</a>
+  </nav>
+</header>
+
+<main>
+  <section id="homeSection">
+    <h2>مرحباً بكم في تشكيله</h2>
+    <p>نقدم لكم أفضل المنتجات بخيارات متنوعة وبألوان تلائم ذوقكم. استمتع بتجربة تسوق فريدة بطابع بني دافئ وأنيق.</p>
+    <a href="#" class="btn-main">تسوق الآن</a>
+  </section>
+
+  <section id="productsSection" style="display:none;">
+    <h2>منتجاتنا</h2>
+    <div class="products-container">
+      <div class="product-card">
+        <img src="https://images.unsplash.com/photo-1509228627152-1c2a5eea2ab9?auto=format&fit=crop&w=400&q=80" alt="منتج 1" class="product-image" />
+        <h3 class="product-title">منتج بني أنيق 1</h3>
+        <p class="product-desc">وصف قصير لهذا المنتج البني الرائع والجودة العالية.</p>
+      </div>
+      <div class="product-card">
+        <img src="https://images.unsplash.com/photo-1523275335684-37898b6baf30?auto=format&fit=crop&w=400&q=80" alt="منتج 2" class="product-image" />
+        <h3 class="product-title">منتج بني أنيق 2</h3>
+        <p class="product-desc">منتج مميز بتصميم عصري وألوان دافئة تناسب ذوقك.</p>
+      </div>
+      <div class="product-card">
+        <img src="https://scontent.fmji2-2.fna.fbcdn.net/v/t39.30808-6/530663749_122100027698971836_1898667782962384672_n.jpg?stp=dst-jpg_p552x414_tt6&_nc_cat=108&ccb=1-7&_nc_sid=127cfc&_nc_ohc=GONon89M0noQ7kNvwHDlKqo&_nc_oc=AdlVmmCh8_olOsDxZMnM4Hy59Up-JRf5cMJ52_caonThh_f0A7EKHnrBQV6lKLHsWII&_nc_zt=23&_nc_ht=scontent.fmji2-2.fna&_nc_gid=5Ov174HufCOBsxMxK-ue9A&oh=00_AfX2HYO7mxj5CzPEBfbOrX4tse6amugQVl9ucqoa3arB3A&oe=68A09748" alt="منتج 3" class="product-image" />
+        <h3 class="product-title">ساعة Skmei 2328 سبورتية</h3>
+        <p class="product-desc">اختيار مثالي لمن يبحث عن الجودة والراحة في آنٍ واحد.
+          فقط100د.ل
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section id="aboutSection" style="display:none;">
+    <h2>من نحن</h2>
+    <p>تشكيله هي منصة تسوق إلكترونية تهدف لتقديم أفضل المنتجات بجودة عالية وبطابع بني أنيق يعكس الدفء والراحة لعملائنا الكرام. نسعى دائماً للتميز وخدمة الزبائن بأفضل صورة.</p>
+  </section>
+
+  <section id="contactSection" style="display:none;">
+    <h2>تواصل معنا</h2>
+    <p><br>للطلب الرجاء الاتصال على الرقم: 0926441321</p>
+  </section>
+</main>
+
+<footer>
+  &copy; 2025 تشكيله - جميع الحقوق محفوظة
+</footer>
+
+<script>
+  function showSection(sectionId) {
+    const sections = ['homeSection', 'productsSection', 'aboutSection', 'contactSection'];
+    sections.forEach(id => {
+      document.getElementById(id).style.display = (id === sectionId) ? 'block' : 'none';
+    });
+  }
+
+  document.getElementById('homeLink').addEventListener('click', e => {
+    e.preventDefault();
+    showSection('homeSection');
+  });
+  document.getElementById('productsLink').addEventListener('click', e => {
+    e.preventDefault();
+    showSection('productsSection');
+  });
+  document.getElementById('aboutLink').addEventListener('click', e => {
+    e.preventDefault();
+    showSection('aboutSection');
+  });
+  document.getElementById('contactLink').addEventListener('click', e => {
+    e.preventDefault();
+    showSection('contactSection');
+  });
+
+  // عرض الصفحة الرئيسية تلقائياً عند تحميل الموقع
+  showSection('homeSection');
+</script>
+
+</body>
+</html>
