@@ -253,7 +253,7 @@
             text-align: center;
             margin-bottom: 25px;
             font-size: 2.2em;
-            border-bottom: 3px solid #f8fcfe;
+            border-bottom: 3px solid #002e4d;
             padding-bottom: 10px;
         }
         .form-group {
@@ -262,7 +262,7 @@
         .form-group label {
             display: block;
             margin-bottom: 8px;
-            color: #ffffff;
+            color: #34495e;
             font-weight: 600;
         }
         .form-group input,
@@ -349,7 +349,7 @@
 <script type="text/javascript">
     (function() {
         emailjs.init({
-          publicKey: 'YOUR_PUBLIC_KEY', // <-- ضع مفتاحك العام هنا
+          publicKey: 'YOUR_PUBLIC_KEY', /Fny7jugiUyvyGy9AG/ <-- ضع مفتاحك العام هنا
         });
     })();
 
@@ -383,8 +383,8 @@
         form.addEventListener('submit', function(event) {
             event.preventDefault();
 
-            const serviceID = 'YOUR_SERVICE_ID'; // <-- ضع معرّف الخدمة هنا
-            const templateID = 'YOUR_TEMPLATE_ID'; // <-- ضع معرّف القالب هنا
+            const serviceID = 'YOUR_SERVICE_ID'; /service_m9avbdg/ <-- ضع معرّف الخدمة هنا
+            const templateID = 'YOUR_TEMPLATE_ID'; /template_weu7ng8/ <-- ضع معرّف القالب هنا
             
             emailjs.sendForm(serviceID, templateID, this)
                 .then(() => {
@@ -403,9 +403,3 @@
 
 </body>
 </html>
-emailjs.init({
-  publicKey: 'YOUR_PUBLIC_KEY', /Fny7jugiUyvyGy9AG/ <-- هنا
-});
-
-const serviceID = 'YOUR_SERVICE_ID'; /service_m9avbdg/ <-- هنا
-const templateID = 'YOUR_TEMPLATE_ID'; /template_weu7ng8/ <-- وهنا
