@@ -226,47 +226,179 @@
 <!DOCTYPE html>
 <html lang="ar">
 <head>
-<meta charset="UTF-8" />
-<title>اختبار EmailJS</title>
-<script src="https://cdn.emailjs.com/sdk/3.2/email.min.js"></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>السلة</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f0f2f5;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+            direction: rtl; /* لاتجاه النص من اليمين لليسار */
+        }
+        .container {
+            background-color: #fff;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 6px 15px rgba(0,0,0,0.1);
+            width: 100%;
+            max-width: 550px;
+        }
+        h1 {
+            color: #2c3e50;
+            text-align: center;
+            margin-bottom: 25px;
+            font-size: 2.2em;
+            border-bottom: 3px solid #3498db;
+            padding-bottom: 10px;
+        }
+        .form-group {
+            margin-bottom: 20px;
+        }
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            color: #34495e;
+            font-weight: 600;
+        }
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #bdc3c7;
+            border-radius: 8px;
+            box-sizing: border-box;
+            font-size: 16px;
+            transition: border-color 0.3s;
+        }
+        .form-group input:focus,
+        .form-group textarea:focus {
+            border-color: #3498db;
+            outline: none;
+        }
+        .submit-btn {
+            width: 100%;
+            padding: 15px;
+            background-color: #2ecc71;
+            color: #fff;
+            border: none;
+            border-radius: 8px;
+            font-size: 1.2em;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        .submit-btn:hover {
+            background-color: #27ae60;
+        }
+        .status-message {
+            margin-top: 20px;
+            text-align: center;
+            font-weight: bold;
+        }
+    </style>
 </head>
 <body>
 
-<form id="contactForm">
-  <input type="text" id="phone" placeholder="رقم الهاتف" required><br>
-  <textarea id="address" placeholder="العنوان" required></textarea><br>
-  <textarea id="order" placeholder="تفاصيل الطلب" required></textarea><br>
-  <button type="submit">إرسال الطلب</button>
-</form>
+<div class="container">
+    <h1>السلة</h1>
+    <form id="order-form">
+        <div class="form-group">
+            <label for="الاسم">ما اسمك؟</label>
+            <input type="text" id="الاسم" name="الاسم" required>
+        </div>
+        
+        <div class="form-group">
+            <label for="رقم_الهاتف">ما رقم هاتفك؟</label>
+            <input type="tel" id="رقم_الهاتف" name="رقم_الهاتف" required>
+        </div>
 
-<script>
-  emailjs.init('YOUR_USER_ID'); // استبدل بالقيمة الصحيحة
+        <div class="form-group">
+            <label for="تفاصيل_الطلب">تفاصيل الطلب (أو المنتج)</label>
+            <textarea id="تفاصيل_الطلب" name="تفاصيل_الطلب" rows="4" required></textarea>
+        </div>
+        
+        <div class="form-group">
+            <label for="السعر">سعر المنتج (للمثال)</label>
+            <input type="number" id="السعر" name="السعر" value="100" required>
+        </div>
+        
+        <div class="form-group">
+            <label for="الكمية">الكمية</label>
+            <input type="number" id="الكمية" name="الكمية" value="1" min="1" required>
+        </div>
+        
+        <input type="hidden" id="order_id" name="order_id" value="">
+        <input type="hidden" id="تكلفة_الشحن" name="تكلفة_الشحن" value="10">
+        <input type="hidden" id="ضريبة_التكلفة" name="ضريبة_التكلفة" value="5">
+        <input type="hidden" id="التكلفة_الإجمالية" name="التكلفة_الإجمالية" value="">
 
-  document.getElementById('contactForm').addEventListener('submit', function(e) {
-    e.preventDefault();
+        <button type="submit" class="submit-btn">إرسال الطلب</button>
+    </form>
+    <div id="status" class="status-message"></div>
+</div>
 
-    const phone = document.getElementById('phone').value.trim();
-    const address = document.getElementById('address').value.trim();
-    const order = document.getElementById('order').value.trim();
+<script type="text/javascript"
+        src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js">
+</script>
 
-    if(!phone || !address || !order){
-      alert('يرجى تعبئة جميع الحقول');
-      return;
-    }
+<script type="text/javascript">
+    (function() {
+        emailjs.init({
+          publicKey: 'YOUR_PUBLIC_KEY', // <-- ضع مفتاحك العام هنا
+        });
+    })();
 
-    const templateParams = {
-      customer_phone: phone,
-      customer_address: address,
-      order_list: order
+    window.onload = function() {
+        const form = document.getElementById('order-form');
+        const status = document.getElementById('status');
+        const orderIdInput = document.getElementById('order_id');
+        const totalCostInput = document.getElementById('التكلفة_الإجمالية');
+        const priceInput = document.getElementById('السعر');
+        const quantityInput = document.getElementById('الكمية');
+        const shippingCost = parseFloat(document.getElementById('تكلفة_الشحن').value);
+        const taxCost = parseFloat(document.getElementById('ضريبة_التكلفة').value);
+
+        // توليد رقم طلب عشوائي
+        orderIdInput.value = 'ORD-' + Math.floor(100000 + Math.random() * 900000);
+
+        // حساب التكلفة الإجمالية (يمكن تعديل هذه الصيغة)
+        function calculateTotal() {
+            const price = parseFloat(priceInput.value) || 0;
+            const quantity = parseInt(quantityInput.value) || 0;
+            const total = (price * quantity) + shippingCost + taxCost;
+            totalCostInput.value = total.toFixed(2);
+        }
+        
+        // تحديث المجموع عند تغيير السعر أو الكمية
+        priceInput.addEventListener('input', calculateTotal);
+        quantityInput.addEventListener('input', calculateTotal);
+
+        calculateTotal(); // حساب المجموع عند تحميل الصفحة لأول مرة
+
+        form.addEventListener('submit', function(event) {
+            event.preventDefault();
+
+            const serviceID = 'YOUR_SERVICE_ID'; // <-- ضع معرّف الخدمة هنا
+            const templateID = 'YOUR_TEMPLATE_ID'; // <-- ضع معرّف القالب هنا
+            
+            emailjs.sendForm(serviceID, templateID, this)
+                .then(() => {
+                    status.style.color = '#2ecc71';
+                    status.textContent = '✅ تم إرسال طلبك بنجاح! شكراً لك.';
+                    form.reset(); // لإفراغ الحقول
+                    calculateTotal(); // إعادة حساب المجموع
+                }, (error) => {
+                    status.style.color = '#e74c3c';
+                    status.textContent = '❌ فشل الإرسال. يرجى المحاولة مرة أخرى.';
+                    console.log('FAILED...', error);
+                });
+        });
     };
-
-    emailjs.send('YOUR_SERVICE_ID', 'YOUR_TEMPLATE_ID', templateParams)
-    .then(() => alert('تم إرسال الطلب!'))
-    .catch(err => {
-      alert('خطأ في الإرسال، حاول مرة أخرى');
-      console.error(err);
-    });
-  });
 </script>
 
 </body>
